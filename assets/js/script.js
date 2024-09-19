@@ -43,7 +43,20 @@ registerBtn.addEventListener("click", (e) => {
   const participants = participantsInput.value;
   const email = emailInput.value;
 
+  if (
+    nome === "" ||
+    data === "" ||
+    local === "" ||
+    description === "" ||
+    participants === "" ||
+    email === ""
+  ) {
+    alert("Preencha todos os campos");
+    return;
+  }
+
   cadastrarEvento(nome, data, local, description, participants, email);
+  listarEventos();  
 
   // limpando os inputs
   nomeInput.value = "";
@@ -57,33 +70,58 @@ registerBtn.addEventListener("click", (e) => {
 // FUNCOES
 
 function cadastrarEvento(nome, data, local, description, participants, email) {
-   nome = nome;
-   data = data;
-   local = local;
-   description = description;
-   participants = participants;
-   email = email;
+  let novoEvento = {
+    nome: nome,
+    data: data,
+    local: local,
+    description: description,
+    participants: participants,
+    email: email,
+  };
 
-  const listaEventosUl = document.querySelector("#listaEventosUl");
-  const novoEventoLi = document.createElement("li");
+  let eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+  eventos.push(novoEvento);
+  localStorage.setItem("eventos", JSON.stringify(eventos));
 
-  novoEventoLi.innerHTML = `
-   <h3>${nome}</h3>
-   <p>${data}</p>
-   <p>${local}</p>
-   <p class="descriptionText">${description}</p>
-   <p>${participants} pessoas</p>
-   <p>${email}</p>
-   <button class="deleteBtn">Excluir Evento</button>
-   `;
-  
-   listaEventosUl.appendChild(novoEventoLi);
 
-   const deleteBtn = novoEventoLi.querySelector(".deleteBtn");
-  deleteBtn.addEventListener("click", () => {
-    novoEventoLi.remove(); // Remove apenas o evento correspondente
-  });
-  
 }
 
+function listarEventos() {
+  const listaEventosUl = document.querySelector("#listaEventosUl");
+  listaEventosUl.innerHTML = "";
+  
+  let eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+  eventos.forEach((evento) => {
+    const novoEventoLi = document.createElement("li");
+    novoEventoLi.innerHTML = `
+    <h3>${evento.nome}</h3>
+    <p>${evento.data}</p>
+    <p>${evento.local}</p>
+    <p class="descriptionText">${evento.description}</p>
+    <p>${evento.participants} pessoas</p>
+    <p>${evento.email}</p>
+    <button class="deleteBtn">Deletar</button>
+    `;
+    listaEventosUl.appendChild(novoEventoLi);
 
+
+    const deleteBtn = document.querySelector('.deleteBtn')
+    deleteBtn.addEventListener('click', () => {
+      excluirEvento(evento)
+      novoEventoLi.remove()
+  })
+})}
+
+function excluirEvento(eventoParaExcluir) {
+  let eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+  eventos = eventos.filter(evento => evento.nome !== eventoParaExcluir.nome && evento.data !== eventoParaExcluir.data)
+  localStorage.setItem("eventos", JSON.stringify(eventos))
+}
+
+document.addEventListener("DOMContentLoaded", listarEventos)
+
+// O que falta
+
+// - Armazenar os dados no localStorage
+// - Criar uma função para listar os eventos do localStorage
+// - Criar uma função para deletar um evento do localStorage
