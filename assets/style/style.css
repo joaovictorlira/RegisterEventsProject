@@ -9,12 +9,21 @@ body {
   padding-top: 50px;
   box-sizing: border-box;
   background-color: #ff6b6b; /* Cor de fundo vibrante e atraente */
-  background-image: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background-image: linear-gradient(180deg, #ff0000, #111);
   display: flex;
   align-items: center;
   min-height: 100vh;
   justify-content: center;
   font-family: "Montserrat", sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .registerContainer.active {
@@ -35,9 +44,11 @@ body {
 
 h1 {
   text-align: center;
-  color: #4ecdc4;
-  margin-bottom: 20px;
+  color: #ff4d4d; 
+  margin-bottom: 30px;
   margin-top: 20px;
+  font-weight: bold;
+  font-size: 40px;
 }
 
 form {
@@ -51,8 +62,10 @@ form {
 
 form label {
   padding: 10px;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 17px;
 }
+
 
 form input,
 textarea {
@@ -66,6 +79,10 @@ textarea {
 form input::placeholder,
 form textarea::placeholder {
   color: #ccc;
+  font-family: "Montserrat", sans-serif;
+}
+
+data::placeholder {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -83,15 +100,39 @@ textarea {
 button {
   width: 150px;
   height: 50px;
-  background-color: #ff6b6b;
+  background: linear-gradient(135deg, #ff4d4d, #800000);
   border: none;
   color: white;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
   border-radius: 8px;
   transition: background-color 0.3s ease;
-  opacity: 0.8;
+  opacity: 0.9;
   transition: opacity 0.3s ease;
+}
+
+
+#searchBtn {
+  width: 100px;
+  height: 30px;
+  border-radius: 0px;
+  background: #ff4d4d;
+  opacity: 0.7;
+}
+
+#searchBtn:hover {
+  opacity: 1;
+}
+
+
+#searchInput {
+  padding: 6px;
+  font-weight: bold;
+}
+
+#searchInput::placeholder {
+  font-size: 12px;
 }
 
 button:hover {
@@ -181,4 +222,5 @@ p {
 .eventsContainer .deleteBtn {
   margin-top: 20px;
   margin-bottom: 20px;
+  height: 40px;
 }

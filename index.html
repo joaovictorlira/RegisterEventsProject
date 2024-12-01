@@ -43,15 +43,6 @@
         </div>
 
         <div class="form-group">
-          <label for="description">Descrição do Evento:</label>
-          <textarea
-            id="description"
-            required
-            placeholder="Digite a descrição do evento"
-          ></textarea>
-        </div>
-
-        <div class="form-group">
           <label for="participants">Número de Participantes:</label>
           <input
             type="number"
@@ -70,6 +61,11 @@
             placeholder="Digite o email para contato"
           />
         </div>
+
+        <div class="form-group">
+          <label for="image">Imagem do Evento:</label>
+          <input type="file" id="image" accept="image/*" />
+        </div>
       </form>
       <div class="button-group">
         <button type="submit" id="registerBtn">Cadastrar Evento</button>
@@ -80,10 +76,13 @@
     <div class="eventsContainer">
       <div id="listaEventos">
         <h2>Lista de Eventos</h2>
-        <ul id="listaEventosUl">
-        
-     
-        </ul>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Pesquisar evento pelo nome"
+        />
+        <button id="searchBtn">Pesquisar</button>
+        <ul id="listaEventosUl"></ul>
         <button class="backBtn">Voltar</button>
       </div>
     </div>
